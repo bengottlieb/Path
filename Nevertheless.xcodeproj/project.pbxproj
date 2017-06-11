@@ -10,6 +10,8 @@
 		B53DA32F1EEC583F004EF78B /* Nevertheless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53DA3251EEC583F004EF78B /* Nevertheless.framework */; };
 		B53DA3341EEC583F004EF78B /* NeverthelessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DA3331EEC583F004EF78B /* NeverthelessTests.swift */; };
 		B53DA3361EEC583F004EF78B /* Nevertheless.h in Headers */ = {isa = PBXBuildFile; fileRef = B53DA3281EEC583F004EF78B /* Nevertheless.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B53DA3401EEC5864004EF78B /* Nevertheless.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DA33F1EEC5864004EF78B /* Nevertheless.swift */; };
+		B53DA3421EEC58AA004EF78B /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DA3411EEC58AA004EF78B /* Path.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		B53DA32E1EEC583F004EF78B /* NeverthelessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeverthelessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53DA3331EEC583F004EF78B /* NeverthelessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverthelessTests.swift; sourceTree = "<group>"; };
 		B53DA3351EEC583F004EF78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B53DA33F1EEC5864004EF78B /* Nevertheless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nevertheless.swift; sourceTree = "<group>"; };
+		B53DA3411EEC58AA004EF78B /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				B53DA3281EEC583F004EF78B /* Nevertheless.h */,
+				B53DA33F1EEC5864004EF78B /* Nevertheless.swift */,
+				B53DA3411EEC58AA004EF78B /* Path.swift */,
 				B53DA3291EEC583F004EF78B /* Info.plist */,
 			);
 			path = Nevertheless;
@@ -148,6 +154,7 @@
 				TargetAttributes = {
 					B53DA3241EEC583F004EF78B = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 					};
 					B53DA32D1EEC583F004EF78B = {
 						CreatedOnToolsVersion = 9.0;
@@ -194,6 +201,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B53DA3421EEC58AA004EF78B /* Path.swift in Sources */,
+				B53DA3401EEC5864004EF78B /* Nevertheless.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +337,7 @@
 		B53DA33A1EEC583F004EF78B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = YY6CWUX533;
@@ -340,6 +350,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.Nevertheless;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -348,6 +359,7 @@
 		B53DA33B1EEC583F004EF78B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = YY6CWUX533;
@@ -368,6 +380,7 @@
 		B53DA33D1EEC583F004EF78B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = YY6CWUX533;
 				INFOPLIST_FILE = NeverthelessTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -381,6 +394,7 @@
 		B53DA33E1EEC583F004EF78B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = YY6CWUX533;
 				INFOPLIST_FILE = NeverthelessTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -410,6 +424,7 @@
 				B53DA33B1EEC583F004EF78B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B53DA33C1EEC583F004EF78B /* Build configuration list for PBXNativeTarget "NeverthelessTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +433,7 @@
 				B53DA33E1EEC583F004EF78B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
