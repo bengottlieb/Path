@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B53DA32F1EEC583F004EF78B /* Nevertheless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53DA3251EEC583F004EF78B /* Nevertheless.framework */; };
-		B53DA3341EEC583F004EF78B /* NeverthelessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DA3331EEC583F004EF78B /* NeverthelessTests.swift */; };
 		B53DA3361EEC583F004EF78B /* Nevertheless.h in Headers */ = {isa = PBXBuildFile; fileRef = B53DA3281EEC583F004EF78B /* Nevertheless.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B53DA3401EEC5864004EF78B /* Nevertheless.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DA33F1EEC5864004EF78B /* Nevertheless.swift */; };
 		B53DA3421EEC58AA004EF78B /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DA3411EEC58AA004EF78B /* Path.swift */; };
+		B5EEC40A1EED4B0000D6CC33 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC4091EED4B0000D6CC33 /* PathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,10 +29,10 @@
 		B53DA3281EEC583F004EF78B /* Nevertheless.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Nevertheless.h; sourceTree = "<group>"; };
 		B53DA3291EEC583F004EF78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B53DA32E1EEC583F004EF78B /* NeverthelessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeverthelessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B53DA3331EEC583F004EF78B /* NeverthelessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeverthelessTests.swift; sourceTree = "<group>"; };
 		B53DA3351EEC583F004EF78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B53DA33F1EEC5864004EF78B /* Nevertheless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nevertheless.swift; sourceTree = "<group>"; };
 		B53DA3411EEC58AA004EF78B /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		B5EEC4091EED4B0000D6CC33 /* PathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 		B53DA3321EEC583F004EF78B /* NeverthelessTests */ = {
 			isa = PBXGroup;
 			children = (
-				B53DA3331EEC583F004EF78B /* NeverthelessTests.swift */,
+				B5EEC4091EED4B0000D6CC33 /* PathTests.swift */,
 				B53DA3351EEC583F004EF78B /* Info.plist */,
 			);
 			path = NeverthelessTests;
@@ -210,7 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B53DA3341EEC583F004EF78B /* NeverthelessTests.swift in Sources */,
+				B5EEC40A1EED4B0000D6CC33 /* PathTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
