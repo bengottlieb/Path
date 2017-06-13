@@ -1,5 +1,5 @@
 //
-//  PathComponent.swift
+//  DirectoryPath.swift
 //  Nevertheless
 //
 //  Created by Ben Gottlieb on 6/10/17.
@@ -8,17 +8,17 @@
 
 import Foundation
 
-public class Path: CustomStringConvertible {
+public class DirectoryPath: CustomStringConvertible {
 	public enum Error: Swift.Error { case movedToTrashReturnedInvalidURL }
-	let url: URL
+	public let url: URL
 	
 	public var path: String { return self.url.path }
-	public var description: String { return "path: " + self.url.path }
+	public var description: String { return self.url.path }
 	
 	#if os(iOS) || os(macOS)
-		public static var documents: Path = { Path(path: NSSearchPathForDirectoriesInDomains(.documentDirectory, [.userDomainMask], true).first!) }()
-		public static var library: Path = { Path(path: NSSearchPathForDirectoriesInDomains(.libraryDirectory, [.userDomainMask], true).first!) }()
-		public static var caches: Path = { Path(path: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true).first!) }()
+		public static var documents: DirectoryPath = { DirectoryPath(path: NSSearchPathForDirectoriesInDomains(.documentDirectory, [.userDomainMask], true).first!) }()
+		public static var library: DirectoryPath = { DirectoryPath(path: NSSearchPathForDirectoriesInDomains(.libraryDirectory, [.userDomainMask], true).first!) }()
+		public static var caches: DirectoryPath = { DirectoryPath(path: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true).first!) }()
 	#endif
 
 	public init(path: String, createPathIfNecessary: Bool = true) {
@@ -31,20 +31,24 @@ public class Path: CustomStringConvertible {
 		if !url.isFileURL { return nil }
 	}
 	
-	public init(parent: Path, component: String, createPathIfNecessary: Bool = true) {
+	public init(parent: DirectoryPath, component: String, createPathIfNecessary: Bool = true) throws {
 		self.url = parent.url.appendingPathComponent(component)
-		if createPathIfNecessary, let parent = self.parent, !parent.exists { try? parent.create() }
+		if createPathIfNecessary, !self.exists { try self.create() }
 	}
 	
-	public func child(_ name: String, createPathIfNecessary: Bool = true) -> Path {
-		return Path(parent: self, component: name, createPathIfNecessary: createPathIfNecessary)
+	public func subdirectory(_ name: String, createPathIfNecessary: Bool = true) throws -> DirectoryPath {
+		return try DirectoryPath(parent: self, component: name, createPathIfNecessary: createPathIfNecessary)
 	}
 	
-	public var parent: Path? {
+	public func child(_ name: String, createPathIfNecessary: Bool = true) throws -> FilePath {
+		return try FilePath(parent: self, component: name, createPathIfNecessary: createPathIfNecessary)
+	}
+	
+	public var parent: DirectoryPath? {
 		let parentURL = self.url.deletingLastPathComponent()
 		
 		if parentURL == self.url { return nil }
-		return Path(url: parentURL, createPathIfNecessary: false)
+		return DirectoryPath(url: parentURL, createPathIfNecessary: false)
 	}
 	
 	public subscript(_ name: String) -> Data? {
@@ -54,8 +58,8 @@ public class Path: CustomStringConvertible {
 		}
 		set {
 			if !self.exists { try? self.create() }
-			let fileURL = self.url.appendingPathComponent(name)
-			try? newValue?.write(to: fileURL)
+			let child = try? self.child(name)
+			child?.data = newValue
 		}
 	}
 	#if swift(>=4)
@@ -81,26 +85,66 @@ public class Path: CustomStringConvertible {
 	}
 	
 	public var exists: Bool {
-		return FileManager.default.fileExists(atPath: self.url.path)
+		var isDirectory: ObjCBool = false
+		return FileManager.default.fileExists(atPath: self.url.path, isDirectory: &isDirectory) && isDirectory.boolValue
+	}
+	
+	var existsAsFile: Bool {
+		var isDirectory: ObjCBool = false
+		return FileManager.default.fileExists(atPath: self.url.path, isDirectory: &isDirectory) && !isDirectory.boolValue
 	}
 	
 	#if swift(>=4)
-		public func create(attributes: [FileAttributeKey : Any]? = nil) throws {
+		public func create(withoutPredjudice: Bool = false, attributes: [FileAttributeKey : Any]? = nil) throws {
 			print("Creating at \(self.path)\n")
+			if withoutPredjudice, self.existsAsFile { try self.remove() }
 			try FileManager.default.createDirectory(at: self.url, withIntermediateDirectories: true, attributes: attributes)
 		}
 		
-		func moveToTrash() throws -> Path {
+		func moveToTrash() throws -> FilePath {
 			var newURL: NSURL?
 			
 			try FileManager.default.trashItem(at: self.url, resultingItemURL: &newURL)
-			if let result = Path(url: newURL as URL!) { return result }
+			if let result = FilePath(url: newURL as URL!) { return result }
 			throw Error.movedToTrashReturnedInvalidURL
 		}
 	#else
-		public func create(attributes: [String : Any]? = nil) throws {
-			print("Creating at \(self.path)\n")
+		public func create(withoutPredjudice: Bool = false, attributes: [String : Any]? = nil) throws {
+			if withoutPredjudice, self.existsAsFile { try self.remove() }
 			try FileManager.default.createDirectory(at: self.url, withIntermediateDirectories: true, attributes: attributes)
 		}
 	#endif
+}
+
+public class FilePath: DirectoryPath {
+	public override var description: String { return "\(self.url.lastPathComponent) [\(self.parent!.path)]" + (!self.exists ? " missing" : "") }
+	
+	override public var exists: Bool {
+		return self.existsAsFile
+	}
+	
+	public var data: Data? {
+		set { try? self.set(data: newValue) }
+		
+		get {
+			return try? Data(contentsOf: self.url)
+		}
+	}
+	
+	public func set(data: Data?) throws {
+		try? self.remove()
+		if let data = data {
+			try? data.write(to: self.url)
+		}
+		
+	}
+	
+	public override init(parent: DirectoryPath, component: String, createPathIfNecessary: Bool = true) throws {
+		try super.init(parent: parent, component: component, createPathIfNecessary: false)
+	}
+	
+	public override init?(url: URL, createPathIfNecessary: Bool = false) {
+		super.init(url: url, createPathIfNecessary: false)
+	}
+	
 }

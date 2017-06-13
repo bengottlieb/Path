@@ -32,9 +32,9 @@ class PathTests: XCTestCase {
     
     func testStorageAtPath() {
 		let test = StorageTest(integer: 7, string: "hello")
-		Path.documents["encoded.test"] = test
+		DirectoryPath.documents["encoded.test"] = test
 		
-		let decoded: StorageTest? = Path.documents["encoded.test"]
+		let decoded: StorageTest? = DirectoryPath.documents["encoded.test"]
 		
 		XCTAssert(decoded == test, "Failed to extract an identical object")
 		
@@ -42,14 +42,15 @@ class PathTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 	
-	func testCreatePath() {
-		let base = Path.documents
-		let created = base.child("sub/path")
-		let dest = created.child("test.dat")
+	func testCreateDirectoriesAndFile() {
+		let base = DirectoryPath.documents
+		let created = try! base.subdirectory("sub/path")
+		let dest = try! created.child("test.dat")
 		
 		try? dest.remove()
 		XCTAssert(!dest.exists, "Failed to delete file")
 		created["test.dat"] = StorageTest(integer: 4, string: "test")
+		print("File: \(dest)")
 		XCTAssert(dest.exists, "Failed to create file")
 		
 		try? created.parent?.remove()
