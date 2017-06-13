@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Nevertheless
+import Path
 
 struct StorageTest: Codable, Equatable {
 	let integer: Int

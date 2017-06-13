@@ -58,22 +58,23 @@ public class Path: CustomStringConvertible {
 			try? newValue?.write(to: fileURL)
 		}
 	}
-	
-	public subscript<Type: Decodable>(_ name: String) -> Type? {
-		get {
-			guard let data: Data = self[name] else { return nil }
-			
-			let decoder = JSONDecoder()
-			
-			return try? decoder.decode(Type.self, from: data)
-		}
-		set {
-			let encoder = JSONEncoder()
-			if let data = try? encoder.encode(newValue) {
-				self[name] = data
+	#if swift(>=4)
+		public subscript<Type: Decodable>(_ name: String) -> Type? {
+			get {
+				guard let data: Data = self[name] else { return nil }
+				
+				let decoder = JSONDecoder()
+				
+				return try? decoder.decode(Type.self, from: data)
+			}
+			set {
+				let encoder = JSONEncoder()
+				if let data = try? encoder.encode(newValue) {
+					self[name] = data
+				}
 			}
 		}
-	}
+	#endif
 	
 	public func remove() throws {
 		if self.exists { try FileManager.default.removeItem(at: self.url) }
@@ -83,16 +84,23 @@ public class Path: CustomStringConvertible {
 		return FileManager.default.fileExists(atPath: self.url.path)
 	}
 	
-	public func create(attributes: [FileAttributeKey : Any]? = nil) throws {
-		print("Creating at \(self.path)\n")
-		try FileManager.default.createDirectory(at: self.url, withIntermediateDirectories: true, attributes: attributes)
-	}
-	
-	func moveToTrash() throws -> Path {
-		var newURL: NSURL?
+	#if swift(>=4)
+		public func create(attributes: [FileAttributeKey : Any]? = nil) throws {
+			print("Creating at \(self.path)\n")
+			try FileManager.default.createDirectory(at: self.url, withIntermediateDirectories: true, attributes: attributes)
+		}
 		
-		try FileManager.default.trashItem(at: self.url, resultingItemURL: &newURL)
-		if let result = Path(url: newURL as URL!) { return result }
-		throw Error.movedToTrashReturnedInvalidURL
-	}
+		func moveToTrash() throws -> Path {
+			var newURL: NSURL?
+			
+			try FileManager.default.trashItem(at: self.url, resultingItemURL: &newURL)
+			if let result = Path(url: newURL as URL!) { return result }
+			throw Error.movedToTrashReturnedInvalidURL
+		}
+	#else
+		public func create(attributes: [String : Any]? = nil) throws {
+			print("Creating at \(self.path)\n")
+			try FileManager.default.createDirectory(at: self.url, withIntermediateDirectories: true, attributes: attributes)
+		}
+	#endif
 }
