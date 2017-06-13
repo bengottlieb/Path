@@ -6,10 +6,25 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B598CC931EF08D8900203F64 /* Combined */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B598CC941EF08D8900203F64 /* Build configuration list for PBXAggregateTarget "Combined" */;
+			buildPhases = (
+				B598CCA51EF09DD200203F64 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Combined;
+			productName = Combined;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B53DA32F1EEC583F004EF78B /* Path.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53DA3251EEC583F004EF78B /* Path.framework */; };
 		B53DA3361EEC583F004EF78B /* Path.h in Headers */ = {isa = PBXBuildFile; fileRef = B53DA3281EEC583F004EF78B /* Path.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B53DA3421EEC58AA004EF78B /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53DA3411EEC58AA004EF78B /* Path.swift */; };
+		B55E56F51EF0A239007E40D4 /* Path.h in Headers */ = {isa = PBXBuildFile; fileRef = B53DA3281EEC583F004EF78B /* Path.h */; };
 		B5EEC40A1EED4B0000D6CC33 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC4091EED4B0000D6CC33 /* PathTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,10 +41,13 @@
 /* Begin PBXFileReference section */
 		B53DA3251EEC583F004EF78B /* Path.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Path.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53DA3281EEC583F004EF78B /* Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
-		B53DA3291EEC583F004EF78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B53DA3291EEC583F004EF78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Path/iOS/Info.plist; sourceTree = "<group>"; };
 		B53DA32E1EEC583F004EF78B /* PathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53DA3351EEC583F004EF78B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B53DA3411EEC58AA004EF78B /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		B55E56F41EF0A096007E40D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Path/Mac/Info.plist; sourceTree = "<group>"; };
+		B598CC9D1EF09C1500203F64 /* Path.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Path.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B598CCA61EF09F4400203F64 /* BuildFramework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = BuildFramework.sh; path = Path/BuildFramework.sh; sourceTree = "<group>"; };
 		B5EEC4091EED4B0000D6CC33 /* PathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,12 +67,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B598CC991EF09C1500203F64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B53DA31B1EEC583F004EF78B = {
 			isa = PBXGroup;
 			children = (
+				B598CCA61EF09F4400203F64 /* BuildFramework.sh */,
+				B55E56F41EF0A096007E40D4 /* Info.plist */,
+				B598CC971EF09BF500203F64 /* iOS */,
 				B53DA3271EEC583F004EF78B /* Path */,
 				B53DA3321EEC583F004EF78B /* PathTests */,
 				B53DA3261EEC583F004EF78B /* Products */,
@@ -66,6 +94,7 @@
 			children = (
 				B53DA3251EEC583F004EF78B /* Path.framework */,
 				B53DA32E1EEC583F004EF78B /* PathTests.xctest */,
+				B598CC9D1EF09C1500203F64 /* Path.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,7 +104,6 @@
 			children = (
 				B53DA3281EEC583F004EF78B /* Path.h */,
 				B53DA3411EEC58AA004EF78B /* Path.swift */,
-				B53DA3291EEC583F004EF78B /* Info.plist */,
 			);
 			path = Path;
 			sourceTree = "<group>";
@@ -89,6 +117,14 @@
 			path = PathTests;
 			sourceTree = "<group>";
 		};
+		B598CC971EF09BF500203F64 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B53DA3291EEC583F004EF78B /* Info.plist */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -100,12 +136,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B598CC9A1EF09C1500203F64 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B55E56F51EF0A239007E40D4 /* Path.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B53DA3241EEC583F004EF78B /* Path */ = {
+		B53DA3241EEC583F004EF78B /* Path_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B53DA3391EEC583F004EF78B /* Build configuration list for PBXNativeTarget "Path" */;
+			buildConfigurationList = B53DA3391EEC583F004EF78B /* Build configuration list for PBXNativeTarget "Path_iOS" */;
 			buildPhases = (
 				B53DA3201EEC583F004EF78B /* Sources */,
 				B53DA3211EEC583F004EF78B /* Frameworks */,
@@ -116,7 +160,7 @@
 			);
 			dependencies = (
 			);
-			name = Path;
+			name = Path_iOS;
 			productName = Path;
 			productReference = B53DA3251EEC583F004EF78B /* Path.framework */;
 			productType = "com.apple.product-type.framework";
@@ -139,6 +183,24 @@
 			productReference = B53DA32E1EEC583F004EF78B /* PathTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		B598CC9C1EF09C1500203F64 /* Path_Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B598CCA21EF09C1500203F64 /* Build configuration list for PBXNativeTarget "Path_Mac" */;
+			buildPhases = (
+				B598CC981EF09C1500203F64 /* Sources */,
+				B598CC991EF09C1500203F64 /* Frameworks */,
+				B598CC9A1EF09C1500203F64 /* Headers */,
+				B598CC9B1EF09C1500203F64 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Path_Mac;
+			productName = PathMac;
+			productReference = B598CC9D1EF09C1500203F64 /* Path.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -156,6 +218,12 @@
 					B53DA32D1EEC583F004EF78B = {
 						CreatedOnToolsVersion = 9.0;
 					};
+					B598CC931EF08D8900203F64 = {
+						CreatedOnToolsVersion = 9.0;
+					};
+					B598CC9C1EF09C1500203F64 = {
+						CreatedOnToolsVersion = 9.0;
+					};
 				};
 			};
 			buildConfigurationList = B53DA31F1EEC583F004EF78B /* Build configuration list for PBXProject "Path" */;
@@ -170,8 +238,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B53DA3241EEC583F004EF78B /* Path */,
+				B53DA3241EEC583F004EF78B /* Path_iOS */,
+				B598CC9C1EF09C1500203F64 /* Path_Mac */,
 				B53DA32D1EEC583F004EF78B /* PathTests */,
+				B598CC931EF08D8900203F64 /* Combined */,
 			);
 		};
 /* End PBXProject section */
@@ -191,7 +261,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B598CC9B1EF09C1500203F64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B598CCA51EF09DD200203F64 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./Path/BuildFramework.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B53DA3201EEC583F004EF78B /* Sources */ = {
@@ -210,12 +303,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B598CC981EF09C1500203F64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		B53DA3311EEC583F004EF78B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B53DA3241EEC583F004EF78B /* Path */;
+			target = B53DA3241EEC583F004EF78B /* Path_iOS */;
 			targetProxy = B53DA3301EEC583F004EF78B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -342,14 +442,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Path/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Path/iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.path;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Path;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -364,13 +464,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Path/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Path/iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.path;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Path;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -403,6 +503,70 @@
 			};
 			name = Release;
 		};
+		B598CC951EF08D8900203F64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B598CC961EF08D8900203F64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B598CCA31EF09C1500203F64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Path/Mac/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.path;
+				PRODUCT_MODULE_NAME = Path;
+				PRODUCT_NAME = Path;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		B598CCA41EF09C1500203F64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Path/Mac/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.path;
+				PRODUCT_MODULE_NAME = Path;
+				PRODUCT_NAME = Path;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -415,7 +579,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B53DA3391EEC583F004EF78B /* Build configuration list for PBXNativeTarget "Path" */ = {
+		B53DA3391EEC583F004EF78B /* Build configuration list for PBXNativeTarget "Path_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B53DA33A1EEC583F004EF78B /* Debug */,
@@ -429,6 +593,24 @@
 			buildConfigurations = (
 				B53DA33D1EEC583F004EF78B /* Debug */,
 				B53DA33E1EEC583F004EF78B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B598CC941EF08D8900203F64 /* Build configuration list for PBXAggregateTarget "Combined" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B598CC951EF08D8900203F64 /* Debug */,
+				B598CC961EF08D8900203F64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B598CCA21EF09C1500203F64 /* Build configuration list for PBXNativeTarget "Path_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B598CCA31EF09C1500203F64 /* Debug */,
+				B598CCA41EF09C1500203F64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
