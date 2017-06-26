@@ -62,6 +62,21 @@ public class DirectoryPath: CustomStringConvertible {
 			child?.data = newValue
 		}
 	}
+	
+	public subscript(_ name: String) -> FilePath? {
+		get {
+			let fileURL = self.url.appendingPathComponent(name)
+			return FilePath(url: fileURL)
+		}
+		set {
+			guard let dest = try? self.child(name) else { return }
+			if dest.exists { try? self.remove() }
+			if let file = newValue, file.exists {
+				try? FileManager.default.copyItem(at: file.url, to: dest.url)
+			}
+		}
+	}
+	
 	#if swift(>=4)
 		public subscript<Type: Decodable>(_ name: String) -> Type? {
 			get {
@@ -100,7 +115,8 @@ public class DirectoryPath: CustomStringConvertible {
 			if withoutPredjudice, self.existsAsFile { try self.remove() }
 			try FileManager.default.createDirectory(at: self.url, withIntermediateDirectories: true, attributes: attributes)
 		}
-		
+	
+	@available(iOS 11, *)
 		func moveToTrash() throws -> FilePath {
 			var newURL: NSURL?
 			

@@ -56,5 +56,17 @@ class PathTests: XCTestCase {
 		try? created.parent?.remove()
 		XCTAssert(!created.exists, "Failed to delete directory")
 	}
-    
+	
+	func textURLCopying() {
+		let file = try! DirectoryPath.documents.child("test.txt")
+		file.data = "test".data(using: .utf8)
+		
+		DirectoryPath.documents["test_2.txt"] = file
+		let dest = try! DirectoryPath.documents.child("test_2.txt")
+		let data = dest.data
+		let string = String(data: data!, encoding: .utf8)
+		
+		XCTAssert(string == "test", "Failed to read copied string")
+		
+	}
 }
